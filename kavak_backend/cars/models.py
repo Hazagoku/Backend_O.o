@@ -11,7 +11,7 @@ class Car_info(models.Model):
     fuel = models.CharField(max_length=100)
     year = models.IntegerField()
 
-class Cars(models.Model):
+class Car(models.Model):
     car_id = models.AutoField(primary_key = True) 
     status = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
@@ -20,3 +20,5 @@ class Cars(models.Model):
     color = models.CharField(max_length=100)
     price = models.FloatField()
     carinfo_id = models.ForeignKey(Car_info, on_delete=models.CASCADE)
+
+
