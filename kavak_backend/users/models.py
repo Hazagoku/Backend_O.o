@@ -5,7 +5,7 @@ from users import models as modelsu
 
 # Create your models here.
 class User(models.Model):
-    user_id = models.IntegerField(primary_key = True)
+    user_id = models.ForeignKey(modelsc.Car, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     email = models.EmailField(max_length = 254) 
