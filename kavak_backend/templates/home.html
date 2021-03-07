@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Formulario Carros </title>
+</head>
+<body>
+    (si tienen flechitas a la derecha pon un numero entero)
+<form action = "/cars/r" method = "POST">
+    {% csrf_token %}
+    <p>user_id:<INPUT type="number" name = "user_id" /></p>
+    <p>ciudad:<INPUT type="text" name = "ciudad" /></p>
+    <p>locacion:<INPUT type="text" name = "locacion" /></p>
+    <p>km:<INPUT type="number" name = "km" /></p>
+    <p>color:<INPUT type="text" name = "color" /></p>
+    <p>precio:<INPUT type="number" name = "precio" /></p>
+    <p>car_infid:<INPUT type="number" name = "car_infid" /></p>
+
+    <label for="marca">marca:</label>
+    <select name="marca" id="marca" multiple>
+        <option value=1>Nissan</option>
+        <option value=2>General Motors</option>
+        <option value=3>Volkswagen</option>
+        <option value=4>Toyota</option>
+      </select>
+      <br><br>
+
+      <label for="modelo">modelo:</label>
+      <select name="modelo" id="modelo" multiple>
+          <option value="Volvo">Volvo</option>
+          <option value="Saab">Saab</option>
+          <option value="Opel">Opel</option>
+          <option value="Bocho">Bocho</option>
+        </select>
+        <br><br>
+    <p>año:<INPUT type="number" name = "anio" /></p>
+    <p><INPUT type="submit" value = "Enviar" /></p>
+</form>
+
+<form action = lista_car method = GET>
+    <p>(pon el numero 0 para ver todos o un indice de los que hay)</p>
+    <p>Numero de registro: <INPUT type="number" name = "Numero" /></p>
+    <p><INPUT type="submit" value = "Buscar" /></p>
+</form>
+
+</body>
+</html>
