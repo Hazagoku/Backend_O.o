@@ -21,3 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('hola-mundo/', car_views.hola_mundo, name="hola_mundo")
 ]
+
