@@ -1,42 +1,50 @@
 from django.shortcuts import render, HttpResponse
-from .models import Car
-from .models import Car_info
+from cars.models import Car
+from cars.models import Car_info
 from users.models import User
 import sys
 
 
 
-
-def guardar(request):
-    #Coloca los datos en la base de datos
-    us = request.POST.get("user_id")
-    ciudad = request.POST.get("ciudad")
-    locacion = request.POST.get("locacion")
-    km = request.POST.get("km")
-    color = request.POST.get("color")
-    precio = request.POST.get("precio")
-    car_infid = request.POST.get("car_infid")
-    marca = request.POST.get("marca")
-    modelo = request.POST.get("modelo")
-    anio = request.POST.get("anio")
-   
-    
-    try:
-        ci = carinf_type = Car_info.objects.get( model = modelo )
-        ui = User.objects.get( id =  us  )        
-    except Exception as e:
-        return HttpResponse("Indice incorrecto")    
-
-    BDG = Car(user_id = ui ,status = "Disponible",city = ciudad ,location = locacion ,km = km , color = color , price = precio, carinfo_id = ci, year_purch = anio)
-    BDG.save()
-    return HttpResponse("guardado en BD")
-
-
-
-
 def indexpage(request):
     ##Llama a la pagina con el formulario prototipo
-    return render(request, 'home.html')
+    return render(request, 'formulario_elegir.html')
+
+def elegir(request):
+    #Coloca los datos en la base de datos
+    ci = int(request.GET["car_id"])
+    try:
+        carid = Car.objects.get( car_id = ci)
+        carinfoid = Car_info.objects.get( id = carid.carinfo_id_id )
+    except Exception as e:
+        return HttpResponse("Indice incorrecto")    
+    return render(request, "formulario_update.html", {'carid': carid})
+
+
+
+def editar(request):
+    #Coloca los datos en la base de datos
+    cai = int(request.GET["car_id"])
+    ciudad = request.GET["ciudad"]
+    locacion = request.GET["locacion"]
+    km = request.GET["km"]
+    color = request.GET["color"]
+    precio = request.GET["precio"]
+    car_infid = request.GET["car_infid"]
+    marca = request.GET["marca"]
+    modelo = request.GET["modelo"]
+    anio = request.GET["anio"]
+    try:
+        ci = Car.objects.get( car_id = cai)  
+        ci2 = carinf_type = Car_info.objects.get( model = modelo )
+    except Exception as e:
+        return HttpResponse("Error")    
+
+    Car.objects.filter(car_id=cai).update(status = "Disponible",city = ciudad ,location = locacion ,km = km , color = color , price = precio, carinfo_id = ci2, year_purch = anio)
+    return HttpResponse("Actualizado en BD")
+
+
+
 
 
 

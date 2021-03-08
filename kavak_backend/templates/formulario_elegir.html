@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Formulario Carros </title>
+</head>
+
+
+<form action = "/update/elegir" method = "GET">
+    {% csrf_token %}
+    <p>Ingrese el id del auto a modificar</p>
+    <p>Numero de registro:<INPUT type="number" name = "car_id" /></p>
+    <p><INPUT type="submit" value = "Enviar" /></p>
+</form>
+
+
+</body>
+</html>_

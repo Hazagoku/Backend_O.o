@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Formulario Carros </title>
+</head>
+<body>
+<form action = "/update/editar" method = "PATCH">
+    {% csrf_token %}
+    <p>car_id:<INPUT type= "number", name = "car_id", value = {{carid.car_id}} readonly/></p> 
+    <p>ciudad:<INPUT type="text" name = "ciudad", value = {{carid.city}} /></p>
+    <p>locacion:<INPUT type="text" name = "locacion", value = {{carid.location}} /></p>
+    <p>km:<INPUT type="number" name = "km", value = {{carid.km}} /></p>
+    <p>color:<INPUT type="text" name = "color", value = {{carid.color}} /></p>
+    <p>precio:<INPUT type="number" name = "precio", value = {{carid.price}} /></p>
+    <p>car_infid:<INPUT type="number" name = "car_infid", value = {{carid.carinfo_id_id}} /></p>
+
+    <label for="marca">marca:</label>
+    <select name="marca" id="marca" multiple>
+        <option value=1>Nissan</option>
+        <option value=2>General Motors</option>
+        <option value=3>Volkswagen</option>
+        <option value=4>Toyota</option>
+      </select>
+      <br><br>
+
+      <label for="modelo">modelo:</label>
+      <select name="modelo" id="modelo" multiple>
+          <option value="Volvo">Volvo</option>
+          <option value="Saab">Saab</option>
+          <option value="Opel">Opel</option>
+          <option value="Bocho">Bocho</option>
+        </select>
+        <br><br>
+    <p>año:<INPUT type="number" name = "anio", value = {{carid.year_purch}} /></p>
+    <p><INPUT type="submit" value = "Enviar" /></p>
+</form>
+
+</body>
+</html>
