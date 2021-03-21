@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Formulario Usuario </title>
+</head>
+<body>
+<form action = "/users/create_user" method = "POST">
+    {% csrf_token %}
+    <p>Nombre:<INPUT type="text" name = "name" /></p>
+    <p>Apellido:<INPUT type="text" name = "lastname" /></p>
+    <p>Correo:<INPUT type="text" name = "email" /></p>
+    <p>Direccion:<INPUT type="text" name = "address" /></p>
+    <p><INPUT type="submit" value = "Enviar" /></p>
+</form>
+
+</body>
+</html>
