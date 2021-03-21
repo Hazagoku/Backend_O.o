@@ -2,11 +2,12 @@ from django.shortcuts import render, HttpResponse
 from .models import Car
 from .models import Car_info
 from users.models import User
+from rest_framework.decorators import api_view
 import sys
 
 
 
-
+@api_view(["POST"])
 def guardar(request):
     #Coloca los datos en la base de datos
     us = request.POST.get("user_id")
@@ -16,11 +17,12 @@ def guardar(request):
     color = request.POST.get("color")
     precio = request.POST.get("precio")
     car_infid = request.POST.get("car_infid")
-    marca = request.POST.get("marca")
-    modelo = request.POST.get("modelo")
+    marca =   request.POST.get("marca")
+    modelo = request.POST.get("modelo") 
     anio = request.POST.get("anio")
-   
-    
+    print( request )
+    sys.stdout.flush()
+
     try:
         ci = carinf_type = Car_info.objects.get( model = modelo )
         ui = User.objects.get( id =  us  )        
