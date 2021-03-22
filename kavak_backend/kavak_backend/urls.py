@@ -5,12 +5,14 @@ from delete import views  as delete_views
 from update import views  as update_views
 from users import views as users_views
 #from django.views.generic import TemplateView
+from rest_framework_simplejwt.views import (
+TokenObtainPairView,
+TokenRefreshView,
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('hola-mundo/', car_views.hola_mundo, name="hola_mundo")
-    #TemplateView.as_view(template_name = "index.html")
-    
     path('cars/', car_views.indexpage ),
     path('cars/r',car_views.guardar),
     path('cars/lista_car', car_views.lista_car, name='lista_car'),
@@ -20,7 +22,5 @@ urlpatterns = [
     path('update/elegir',update_views.elegir),
     path('update/editar',update_views.editar),
     path('users/', users_views.index),
-    path('users/create_user',users_views.agregar)
-
-
+    path('users/create_user',users_views.agregar),
 ]

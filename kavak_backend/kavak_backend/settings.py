@@ -132,6 +132,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTIFICATION_CLASSES' : ('rest_framework_simplejwt.authentification.JWTAuthentification',)
+}
+
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
     "https://sub.example.com",
