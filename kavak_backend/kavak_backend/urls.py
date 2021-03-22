@@ -3,6 +3,7 @@ from django.urls import path
 from cars import views  as car_views
 from delete import views  as delete_views
 from update import views  as update_views
+from users import views as users_views
 #from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -17,6 +18,9 @@ urlpatterns = [
     path('delete/r',delete_views.eliminar),
     path('update/', update_views.indexpage),
     path('update/elegir',update_views.elegir),
-    path('update/editar',update_views.editar)
+    path('update/editar',update_views.editar),
+    path('users/', users_views.index),
+    path('users/create_user',users_views.agregar)
+
 
 ]
