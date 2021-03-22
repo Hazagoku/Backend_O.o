@@ -8,10 +8,15 @@ Para la ejecución del backend en la máquina local se debe clonar el repositori
 rest y json web token. Ejemplo en terminal de windows:
 
 python -m pip install Django
+
 pip install djangorestframework
+
 pip install djangorestframework-simplejwt
+
 python -m pip install django-cors-headers
+
 pip install markdown       # Markdown support for the browsable API.
+
 pip install django-filter  # Filtering support
 
 Una vez teniendo instalado todo lo necesario unicamente tiene que ejecutarse 
