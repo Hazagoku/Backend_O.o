@@ -12,6 +12,7 @@ TokenRefreshView,
 
 
 urlpatterns = [
+    path('',car_views.prueba),
     path('admin/', admin.site.urls),
     path('cars/', car_views.indexpage ),
     path('cars/r',car_views.guardar),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('update/editar',update_views.editar),
     path('users/', users_views.index),
     path('users/create_user',users_views.agregar),
+    path('cars/get',car_views.extraer_datos),
 ]
