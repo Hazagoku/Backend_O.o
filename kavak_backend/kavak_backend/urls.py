@@ -12,6 +12,7 @@ TokenRefreshView,
 
 
 urlpatterns = [
+    path('', car_views.car_list),
     path('admin/', admin.site.urls),
     path('cars/', car_views.indexpage ),
     path('cars/r',car_views.guardar),

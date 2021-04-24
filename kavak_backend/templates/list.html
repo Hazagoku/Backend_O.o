@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car list</title>
+</head>
+<style type="text/css">
+    table, th, td, tr {
+        border-left: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <h3>Lista de carros</h1>
+    <table style="width: 100%">
+            <tr>
+                <th>Car Id</th>
+                <th>User Id</th>
+                <th>Status</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>Km</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Year</th>
+                <th>Carinfo Id</th>
+            </tr>
+            {% if entity%}
+            {% for car in entity%}
+            <tr>
+            <td>{{ car.car_id }}</td>
+            <td>{{ car.user_id }}</td>
+            <td>{{ car.status }}</td>
+            <td>{{ car.city }}</td>
+            <td>{{ car.location }}</td>
+            <td>{{ car.km }}</td>
+            <td>{{ car.color }}</td>
+            <td>{{ car.price }}</td>
+            <td>{{ car.year_purch }}</td>
+            <td>{{ car.carinfo_id }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <h1>No hay registros de carros....</h1>
+        
+        {% endif %}
+    </tbody>
+    </table>
+    <div>
+        {% include 'paginator.html' %}
+    </div>
+</body>
+</html>

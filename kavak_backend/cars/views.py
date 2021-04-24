@@ -1,10 +1,39 @@
+#Vista
 from django.shortcuts import render, HttpResponse
-from .models import Car
-from .models import Car_info
+from django.core.paginator import Paginator
+from django.http import Http404
+
+#Modelos
+from cars.models import Car
+from cars.models import Car_info
 from users.models import User
+
 from rest_framework.decorators import api_view
 import sys
 
+def listing(request):
+    car_list = Car.objects.all()
+    paginator = Paginator(car_list, 2) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'pagination.html', {'page_obj': page_obj})
+
+#Listado de vehiculos y paginacion
+def car_list(request):
+    car = Car.objects.all()
+    page = request.GET.get('page', 1)
+    
+    try:
+        paginator = Paginator(car,2)
+        car = paginator.page(page)
+    except:
+        raise Http404
+
+    contexto = {
+        'entity': car,
+        'paginator': paginator
+     }
+    return render(request, 'list.html', contexto)
 
 
 @api_view(["POST"])
@@ -33,18 +62,12 @@ def guardar(request):
     BDG.save()
     return HttpResponse("guardado en BD")
 
-
-
-
 def indexpage(request):
     ##Llama a la pagina con el formulario prototipo
     return render(request, 'home.html')
 
 
-
-
 def lista_car(request):
-    
     indice = int(request.GET["Numero"])
     if indice == 0:         
         d = "Impresion prototipo:" + "<br></br>"
@@ -72,4 +95,4 @@ def lista_car(request):
             return HttpResponse( d )
         except Exception as e:
             return HttpResponse("indice no encontrado")
-    
+

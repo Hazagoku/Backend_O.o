@@ -172,5 +172,5 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 STATICFILES_DIRS = [
-    #os.path.join(BASE_DIR,'test/build/static')
+    os.path.join(BASE_DIR,'static')
 ]
