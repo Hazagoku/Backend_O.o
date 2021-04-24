@@ -10,6 +10,7 @@ from users.models import User
 
 from rest_framework.decorators import api_view
 import sys
+import json
 
 def listing(request):
     car_list = Car.objects.all()
@@ -56,11 +57,12 @@ def guardar(request):
         ci = carinf_type = Car_info.objects.get( model = modelo )
         ui = User.objects.get( id =  us  )        
     except Exception as e:
-        return HttpResponse("Indice incorrecto")    
+        return HttpResponse("Indice incorrecto")
 
-    BDG = Car(user_id = ui ,status = "Disponible",city = ciudad ,location = locacion ,km = km , color = color , price = precio, carinfo_id = ci, year_purch = anio)
-    BDG.save()
-    return HttpResponse("guardado en BD")
+    if request.method == "POST":
+        BDG = Car(user_id = ui ,status = "Disponible",city = ciudad ,location = locacion ,km = km , color = color , price = precio, carinfo_id = ci, year_purch = anio)
+        BDG.save()
+        return HttpResponse("guardado en BD")
 
 def indexpage(request):
     ##Llama a la pagina con el formulario prototipo
@@ -72,6 +74,10 @@ def lista_car(request):
     if indice == 0:         
         d = "Impresion prototipo:" + "<br></br>"
         carros = Car.objects.all()
+        
+        data
+        
+        
         for x in carros:
             cii = Car_info.objects.get( id = x.carinfo_id_id )
             carid = "car_id = " + str(x.car_id) + "<br>"

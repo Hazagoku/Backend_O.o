@@ -24,4 +24,5 @@ urlpatterns = [
     path('update/editar',update_views.editar),
     path('users/', users_views.index),
     path('users/create_user',users_views.agregar),
+    path('cars/get',car_views.extraer_datos),
 ]
