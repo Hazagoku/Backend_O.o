@@ -4,6 +4,7 @@ from cars import views  as car_views
 from delete import views  as delete_views
 from update import views  as update_views
 from users import views as users_views
+from filter import views as filter_views
 #from django.views.generic import TemplateView
 from rest_framework_simplejwt.views import (
 TokenObtainPairView,
@@ -26,4 +27,5 @@ urlpatterns = [
     path('users/', users_views.index),
     path('users/create_user',users_views.agregar),
     path('cars/get',car_views.extraer_datos),
+    path('filter/',filter_views.form),
 ]

@@ -1,0 +1,151 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Filter Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'template.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+  
+
+    <main role="main" class="container">
+
+      <h3>Prototipo filtro</h3>
+      <form method="GET" action=".">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Modelos
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for model in modelos %}
+              <input type = "checkbox" value="{{ model }}" name = "modelo">{{ model }}</input><br/>
+              {% endfor %}
+            </div>
+          </div>    
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="category">Transmision</label>
+            <select id="category" class="form-control" name="transmicion">
+              <option selected>Todas</option>
+              {% for transmicion in transmiciones %}
+              <option value="{{ transmicion }}">{{ transmicion }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Marcas
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for brand in marcas %}
+              <input type = "checkbox" value="{{ brand }}" name = "marca">{{ brand }}</input><br/>
+              {% endfor %}
+            </div>
+          </div>        
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="viewCountMax">Kilometraje minimo</label>
+            <input type="number" min=0 class="form-control" id="viewCountMax" placeholder="600" name="kil_min">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="viewCountMax">Kilometraje maximo</label>
+            <input type="number" min=0 class="form-control" id="viewCountMax" placeholder="542,500" name="kil_max">
+          </div>      
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="viewCountMax">Precio minimo</label>
+            <input type="number" min=0 class="form-control" id="viewCountMax" placeholder="70000" name="precio_min">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="viewCountMax">Precio maximo</label>
+            <input type="number" min=0 class="form-control" id="viewCountMax" placeholder="2000000" name="precio_max">
+          </div>    
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Ciudad
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for city in ciudades %}
+              <input type = "checkbox" value="{{ city }}" name = "ciudad">{{ city }}</input><br/>
+              {% endfor %}
+            </div>
+          </div>     
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Año
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for year in anios %}
+              <input type = "checkbox" value="{{ year }}" name = "anio">{{ year }}</input><br/>
+              {% endfor %}
+            </div>
+          </div>    
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Tipo
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for type in tipos %}
+              <input type = "checkbox" value="{{ type }}" name = "tipo">{{ type }}</input><br/>
+              {% endfor %}
+            </div>
+          </div>    
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Color
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for color in colores %}
+              <input type = "checkbox" value="{{ color }}" name = "color" >{{ color }}</input><br/>
+              {% endfor %}
+            </div>
+          </div> 
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Combustible
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for gas in combustibles %}
+              <input type = "checkbox" value="{{ gas }}" name = "combustible">{{ gas }}</input><br/>
+              {% endfor %}
+            </div>
+          </div> 
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Estatus
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for status in estatus %}
+              <input type = "checkbox" value="{{ status }}" name = "status">{{ status }}</input><br/>
+              {% endfor %}
+            </div>
+          </div> 
+
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <hr/>
+
+      <div class="row">
+        <ul>
+          {% for auto in queryset %}
+            <li>
+              {{ auto.car_id }}
+              <span>Id: {{ auto.car_id }}</span>
+              <span>Id tipo de auto: {{ auto.carinfo_id.id }}</span>
+     
+          {% endfor %}
+        </ul>
+      </div>
+
+    </main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
