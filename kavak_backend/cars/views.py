@@ -1,4 +1,4 @@
-#Vista
+import json
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from django.core.paginator import Paginator
@@ -71,14 +71,17 @@ def extraer_datos(request):
     carros = Car.objects.all()
 
     for x in carros:
-        dt = {}
         cii = Car_info.objects.get( id = x.carinfo_id_id )
-        dt["car_id"] = str(x.car_id)
-        dt["km"] = str(x.km)
-        dt["color"] = x.color
-        dt["brand"] = cii.brand
-        dt["model"] = cii.model
+        dt = {
+            "car_id" : str(x.car_id),
+            "km" : str(x.km),
+            "color" : str(x.color),
+            "brand" :  str(cii.brand),
+            "model" : str(cii.model),
+            "year" : str(x.year_purch)
+        }
         data.append(dt)
+        
     return JsonResponse(data, safe = False)
 
 
