@@ -100,9 +100,6 @@ def lista_car(request):
         d = "Impresion prototipo:" + "<br></br>"
         carros = Car.objects.all()
         
-        data
-        
-        
         for x in carros:
             cii = Car_info.objects.get( id = x.carinfo_id_id )
             carid = "car_id = " + str(x.car_id) + "<br>"
