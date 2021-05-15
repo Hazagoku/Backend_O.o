@@ -20,9 +20,11 @@ def listing(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'pagination.html', {'page_obj': page_obj})
 
-#Listado de vehiculos y paginacion
+@api_view(["GET"])
 def car_list(request):
+    datos = []
     car = Car.objects.all()
+    tamaño = len(car)
     page = request.GET.get('page', 1)
     
     try:
@@ -31,12 +33,21 @@ def car_list(request):
     except:
         raise Http404
 
-    contexto = {
-        'entity': car,
-        'paginator': paginator
-     }
-    return render(request, 'list.html', contexto)
-
+    for x in car:
+        cii = Car_info.objects.get( id = x.carinfo_id_id )
+        dt = {
+            "car_id" : str(x.car_id),
+            "km" : str(x.km),
+            "color" : str(x.color),
+            "brand" :  str(cii.brand),
+            "num"   :  tamaño,
+            "model" : str(cii.model),
+            "year" : str(x.year_purch)
+        }
+        datos.append(dt)
+    #return render(request, 'list.html', contexto)
+    return JsonResponse(datos, safe = False)
+    #http://127.0.0.1:8000/?page=1
 
 @api_view(["POST"])
 def guardar(request):
@@ -69,7 +80,6 @@ def guardar(request):
 def extraer_datos(request):
     data = []
     carros = Car.objects.all()
-
     for x in carros:
         cii = Car_info.objects.get( id = x.carinfo_id_id )
         dt = {
@@ -78,6 +88,7 @@ def extraer_datos(request):
             "color" : str(x.color),
             "brand" :  str(cii.brand),
             "model" : str(cii.model),
+            "num"   : len(carros),
             "year" : str(x.year_purch)
         }
         data.append(dt)
@@ -85,6 +96,17 @@ def extraer_datos(request):
     return JsonResponse(data, safe = False)
 
 
+@api_view(["GET"])
+def extraer(request):
+    data = []
+    carros = Car.objects.all()
+    dt = {
+        "num" : len(carros)
+    }
+    data.append(dt)
+    return JsonResponse(data, safe = False)
+
+    
 def prueba(request):
     ##Llama a la pagina con el formulario prototipo
     return HttpResponse("Soy la pantalla principal del backend")
