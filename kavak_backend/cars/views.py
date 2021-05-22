@@ -28,7 +28,7 @@ def car_list(request):
     page = request.GET.get('page', 1)
     
     try:
-        paginator = Paginator(car,2)
+        paginator = Paginator(car,3)
         car = paginator.page(page)
     except:
         raise Http404
@@ -42,7 +42,10 @@ def car_list(request):
             "brand" :  str(cii.brand),
             "num"   :  tamaño,
             "model" : str(cii.model),
-            "year" : str(x.year_purch)
+            "year" : str(x.year_purch),
+            "price" : str(x.price),
+            "transmi" : cii.transmission,
+            "city" : x.city
         }
         datos.append(dt)
     #return render(request, 'list.html', contexto)
