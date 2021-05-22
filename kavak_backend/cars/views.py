@@ -65,14 +65,35 @@ def guardar(request):
     marca =   request.POST.get("marca")
     modelo = request.POST.get("modelo") 
     anio = request.POST.get("anio")
-    print( request )
+    trans = request.POST.get("trans")
+    tipo = request.POST.get("type")
+    traccion = request.POST.get("traccion")
+    hpower = request.POST.get("hpower")
+    Motor = request.POST.get("Motor")
+    fuel = request.POST.get("fuel")
+    print( "request" )
     sys.stdout.flush()
-
+    carros = Car_info.objects.all()
+    
     try:
-        ci = carinf_type = Car_info.objects.get( model = modelo )
-        ui = User.objects.get( id =  us  )        
+        ci = 0
+        for x in carros:
+            if x.brand ==  marca and x.model == modelo:
+                if x.transmission == trans:
+                    ci = carinf_type = x
+                    ui = User.objects.get( id =  us  )
+        if ci == 0:
+            BDCI = Car_info(transmission = str(trans), type = str(tipo), traction = str(traccion), hpower = str(hpower), motor = str(Motor) ,model = str(modelo),brand = str(marca), fuel = str(fuel), year = anio)
+            BDCI.save()
+            for x in carros:
+                if x.brand ==  marca and x.model == modelo:
+                    if x.transmission == trans:
+                        ci = carinf_type = x
+                        
     except Exception as e:
+        print(e)
         return HttpResponse("Indice incorrecto")
+        
 
     if request.method == "POST":
         BDG = Car(user_id = ui ,status = "Disponible",city = ciudad ,location = locacion ,km = km , color = color , price = precio, carinfo_id = ci, year_purch = anio)
