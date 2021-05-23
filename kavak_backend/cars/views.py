@@ -81,6 +81,7 @@ def guardar(request):
     
     try:
         ci = 0
+        ui = 0
         for x in carros:
             if x.brand ==  marca and x.model == modelo:
                 if x.transmission == trans:
