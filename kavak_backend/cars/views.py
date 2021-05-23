@@ -82,11 +82,12 @@ def guardar(request):
     try:
         ci = 0
         ui = 0
+        ui = User.objects.get( id =  us  )
         for x in carros:
             if x.brand ==  marca and x.model == modelo:
                 if x.transmission == trans:
                     ci = carinf_type = x
-                    ui = User.objects.get( id =  us  )
+                    
         if ci == 0:
             BDCI = Car_info(transmission = str(trans), type = str(tipo), traction = str(traccion), hpower = str(hpower), motor = str(Motor) ,model = str(modelo),brand = str(marca), fuel = str(fuel), year = anio)
             BDCI.save()
@@ -94,7 +95,6 @@ def guardar(request):
                 if x.brand ==  marca and x.model == modelo:
                     if x.transmission == trans:
                         ci = carinf_type = x
-                        ui = User.objects.get( id =  us  )
                         
     except Exception as e:
         print(e)
