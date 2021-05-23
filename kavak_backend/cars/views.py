@@ -93,6 +93,7 @@ def guardar(request):
                 if x.brand ==  marca and x.model == modelo:
                     if x.transmission == trans:
                         ci = carinf_type = x
+                        ui = User.objects.get( id =  us  )
                         
     except Exception as e:
         print(e)
